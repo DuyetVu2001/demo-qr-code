@@ -1,0 +1,39 @@
+<!-- client.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.IO Client</title>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+    integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <script>
+    const socket = io('http://localhost:3000', { transports: ['websocket'] });
+
+    console.log("hello");
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+    });
+
+    socket.on('connect_timeout', () => {
+      console.error('Connection timeout');
+    });
+
+    socket.on('data', (data) => {
+      console.log('Received data from server:', data);
+      // Handle the received data as per your requirements
+    });
+  </script>
+</body>
+
+</html>
