@@ -15,19 +15,19 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cors());
 
 
-app.post('/test-webhook', (req, res) => {
+app.post('/payment-webhook', (req, res) => {
   console.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
   console.log(req.body);
   console.log('<<<<<<<<<<<<<<<<<<<<<<<<');
 
-  io.emit('data', req.body);
+  io.emit('pay-status', req.body);
 
   res.status(200).json({ message: 'OK', success: 1 });
 });
 
 // GET all items
 app.get('/items', (req, res) => {
-  io.emit('data', { test: 123 });
+  io.emit('pay-status', { test: 123 });
   res.json([
     { id: 1, name: 'Item 1' },
     { id: 2, name: 'Item 2' },
